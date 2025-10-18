@@ -35,7 +35,7 @@
       <td style="padding: 8px;">
         <a [href]="apiUrl + '/' + url.shortCode" target="_blank">{{ url.shortCode }}</a>
       </td>
-      <td style="padding: 8px;">{{ url.createdBy }}</td>
+      <td style="padding: 8px;">{{ url.createdByUsername }}</td>
       <td style="padding: 8px;">{{ url.createdAt | date: 'medium' }}</td>
       <td style="padding: 8px; text-align: center;">
         <button (click)="onDelete(url.id)">Delete</button>
