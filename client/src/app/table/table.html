@@ -1,14 +1,49 @@
 <h2>Short URLs Table</h2>
 
+<div style="margin-bottom: 20px;">
+  <h3>Add New URL</h3>
+  <form (ngSubmit)="onAddUrl()">
+    <input 
+      type="text" 
+      name="newUrl" 
+      [(ngModel)]="newUrl" 
+      placeholder="https://example.com" 
+      required 
+      style="width: 300px; padding: 5px;"
+    >
+    <button type="submit">Shorten</button>
+  </form>
+</div>
+
+<hr>
+
 <table border="1" style="width: 100%; border-collapse: collapse;">
   <thead>
-    </thead>
+    <tr>
+      <th style="padding: 8px;">Original URL</th>
+      <th style="padding: 8px;">Short URL</th>
+      <th style="padding: 8px;">Created By</th>
+      <th style="padding: 8px;">Created Date</th>
+      <th style="padding: 8px;">Actions</th>
+    </tr>
+  </thead>
   <tbody>
     <tr *ngFor="let url of urls">
-      </tr>
+      <td style="padding: 8px; word-break: break-all;">
+        <a [href]="url.originalUrl" target="_blank">{{ url.originalUrl }}</a>
+      </td>
+      <td style="padding: 8px;">
+        <a [href]="apiUrl + '/' + url.shortCode" target="_blank">{{ url.shortCode }}</a>
+      </td>
+      <td style="padding: 8px;">{{ url.createdBy }}</td>
+      <td style="padding: 8px;">{{ url.createdAt | date: 'medium' }}</td>
+      <td style="padding: 8px; text-align: center;">
+        <button (click)="onDelete(url.id)">Delete</button>
+      </td>
+    </tr>
     <tr *ngIf="urls.length === 0">
-      <td colspan="3" style="text-align: center; padding: 10px;">
-        No data
+      <td colspan="5" style="text-align: center; padding: 10px;">
+        No data available
       </td>
     </tr>
   </tbody>
