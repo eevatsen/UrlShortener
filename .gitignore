@@ -1,1 +1,65 @@
-api/UrlShortener/.vs/
+# ===================================================================
+# General
+# ===================================================================
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log
+
+# Dependency directories
+node_modules/
+
+# IDE settings
+.idea/
+.vscode/
+
+# Environment variables - NEVER commit these
+.env
+.env.local
+.env.*.local
+
+# Allow example environment file
+!.env.example
+
+# ===================================================================
+# Visual Studio / .NET (for your 'api' folder)
+# ===================================================================
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio temporary files
+.vs/
+*.db
+*.db-shm
+*.db-wal
+
+# ===================================================================
+# Node.js / Front-end (for your 'client' folder)
+# ===================================================================
+
+# Build output
+/dist/
+/build/
+
+# Cache directories
+.angular/cache
+.npm/
+
+# ===================================================================
+# Operating System files
+# ===================================================================
+
+# Windows
+Thumbs.db
+
+# macOS
+.DS_Store
