@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core'; // 1. Import ChangeDetectorRef
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UrlService } from '../services/url.service';
@@ -13,9 +13,11 @@ import { environment } from '../../environments/environment';
 })
 export class TableComponent implements OnInit {
   private urlService = inject(UrlService);
-  public apiUrl = environment.apiUrl
+  private cdr = inject(ChangeDetectorRef); // 2. Inject ChangeDetectorRef
+  
   public urls: any[] = [];
   public newUrl: string = '';
+  public apiUrl = environment.apiUrl;
 
   ngOnInit(): void {
     this.loadUrls();
@@ -25,6 +27,9 @@ export class TableComponent implements OnInit {
     this.urlService.getUrls().subscribe({
       next: (data: any) => {
         this.urls = data;
+        // 3. Manually tell Angular to check for changes and update the view.
+        // This is the crucial fix.
+        this.cdr.detectChanges(); 
       },
       error: (err) => { 
         console.error('Error loading URLs:', err); 
@@ -49,17 +54,14 @@ export class TableComponent implements OnInit {
 
   onDelete(id: number): void {
     if (confirm('Are you sure you want to delete this URL?')) {
-      this.urlService.deleteUrl(id).subscribe({
-        next: () => {
-          this.loadUrls();
-        },
-        error: (err) => {
-          console.error(`Error deleting URL with id ${id}:`, err);
-          if (err.status === 403) {
-            alert('You do not have permission to delete this URL.');
-          }
-        }
-      });
+        this.urlService.deleteUrl(id).subscribe({
+            next: () => {
+                this.loadUrls();
+            },
+            error: (err) => {
+                console.error(`Error deleting URL with id ${id}:`, err);
+            }
+        });
     }
   }
 }
