@@ -1,0 +1,15 @@
+<h2>Short URLs Table</h2>
+
+<table border="1" style="width: 100%; border-collapse: collapse;">
+  <thead>
+    </thead>
+  <tbody>
+    <tr *ngFor="let url of urls">
+      </tr>
+    <tr *ngIf="urls.length === 0">
+      <td colspan="3" style="text-align: center; padding: 10px;">
+        No data
+      </td>
+    </tr>
+  </tbody>
+</table>
