@@ -1,0 +1,19 @@
+<p>Welcome! This application is a simple yet powerful tool designed to take long, cumbersome web addresses and convert them into short, easy-to-share links.</p>
+
+<h3>How It Works: The Algorithm</h3>
+<p>The core of this shortener is a direct conversion algorithm that guarantees every short link is unique and irreversible. Here’s the process:</p>
+<ol>
+  <li><strong>Unique ID:</strong> When a new URL is submitted, it's saved to our database and assigned a unique, auto-incrementing number (its ID).</li>
+  <li><strong>Base Conversion:</strong> Our algorithm then takes this unique integer ID and converts it from the standard decimal system (base-10, using digits 0-9) into a <strong>base-62</strong> system.</li>
+  <li><strong>The Result:</strong> This base-62 system uses 62 characters as its "digits" (a-z, A-Z, 0-9). The resulting converted number is the short, clean, and unique code that represents your original URL. For example, the database ID <code>125</code> becomes the short code <code>cb</code>.</li>
+</ol>
+<p>This method ensures that the short links are as compact as possible and that there are never any collisions.</p>
+
+<h3>Technology Stack</h3>
+<p>This application was built using a modern, full-stack approach:</p>
+<ul>
+  <li><strong>Backend:</strong> ASP.NET Core Web API</li>
+  <li><strong>Frontend:</strong> Angular</li>
+  <li><strong>Database:</strong> PostgreSQL</li>
+  <li><strong>Authentication:</strong> JWT (JSON Web Tokens)</li>
+</ul>

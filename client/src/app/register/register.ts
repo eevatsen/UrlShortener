@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
-
+  private toastr = inject(ToastrService);
   // the form with validation
   registerForm = this.fb.group({
     username: ['', Validators.required],
@@ -27,11 +28,11 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe({
         next: (response) => {
-          console.log('Registration successful!', response);
+          this.toastr.success('Registration successful. Please log in.'); // ✅ Успіх
           this.router.navigate(['/login']);
         },
         error: (err) => {
-          console.error('Registration failed:', err);
+          this.toastr.error(err.error, 'Registration Failed!'); // ❌ Помилка
         }
       });
     }

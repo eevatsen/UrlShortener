@@ -1,20 +1,14 @@
-<h3>Register</h3>
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="username">Username:</label>
-    <input id="username" type="text" formControlName="username">
-    <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
-      Username is required.
+<div class="container mt-5" style="max-width: 500px;">
+  <h3>Register</h3>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input id="username" type="text" formControlName="username" class="form-control">
     </div>
-  </div>
-
-  <div>
-    <label for="password">Password:</label>
-    <input id="password" type="password" formControlName="password">
-    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-      Password is required and must be at least 6 characters long.
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input id="password" type="password" formControlName="password" class="form-control">
     </div>
-  </div>
-
-  <button type="submit" [disabled]="!registerForm.valid">Register</button>
-</form>
+    <button type="submit" class="btn btn-success w-100" [disabled]="!registerForm.valid">Register</button>
+  </form>
+</div>

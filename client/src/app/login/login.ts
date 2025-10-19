@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private toastr = inject(ToastrService);
 
   // form group
   loginForm = this.fb.group({
@@ -27,14 +29,12 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response: any) => {
-          console.log('Login successful!', response);
-          // for future requests
+          this.toastr.success('Logged in successfully!'); // ✅ Успіх
           localStorage.setItem('token', response.token);
           this.router.navigate(['/']);
         },
         error: (err) => {
-          console.error('Login failed:', err);
-          // Here you could display an error message to the user
+          this.toastr.error('Invalid username or password.', 'Login Failed!'); // ❌ Помилка
         }
       });
     }
