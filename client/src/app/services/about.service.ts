@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 })
 export class AboutService {
   private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/api/about`;
+  private apiUrl = `${environment.apiUrl}/about`;
 
   getContent() {
     return this.http.get(this.apiUrl, { responseType: 'text' });

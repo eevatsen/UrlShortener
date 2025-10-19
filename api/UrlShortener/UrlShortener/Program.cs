@@ -7,7 +7,13 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowClient",
+        b => b.WithOrigins("http://localhost:4200") // Дозволяємо запити з цього джерела
+              .AllowAnyHeader()
+              .AllowAnyMethod());
+});
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -64,7 +70,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 var app = builder.Build();
-
+// Automatically apply migrations
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    dbContext.Database.Migrate();
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -73,11 +84,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseCors(builder =>
-    builder.WithOrigins("http://localhost:4200")
-           .AllowAnyHeader()
-           .AllowAnyMethod());
+app.UseCors("AllowClient");
+//app.UseCors(builder =>
+//    builder.WithOrigins("http://localhost:4200")
+//           .AllowAnyHeader()
+//           .AllowAnyMethod());
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class UrlService {
   private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/api/urls`;
+  private apiUrl = `${environment.apiUrl}/urls`;
 
   getUrls() {
     return this.http.get(this.apiUrl);
