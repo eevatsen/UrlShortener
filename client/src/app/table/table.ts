@@ -78,4 +78,14 @@ export class TableComponent implements OnInit {
     this.authService.logout(); 
     this.router.navigate(['/login']); 
   }
+  copyToClipboard(text: string): void {
+    navigator.clipboard.writeText(text).then(() => {
+      // Show a success toast notification
+      this.toastr.success('Copied to clipboard!');
+    }).catch(err => {
+      // Show an error toast if copying fails
+      this.toastr.error('Failed to copy link.', 'Error');
+      console.error('Could not copy text: ', err);
+    });
+  }
 }

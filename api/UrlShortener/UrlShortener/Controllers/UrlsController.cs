@@ -24,7 +24,7 @@ public class UrlsController : ControllerBase
 
     [HttpGet]
     [AllowAnonymous]
-    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)] // Keep this for good measure
+    //[ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)] // Keep this for good measure
     public async Task<IActionResult> GetUrls()
     {
         var urls = await _context.ShortUrls

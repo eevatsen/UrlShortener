@@ -31,7 +31,8 @@ export class AuthService {
     if (token) {
       const decodedToken: any = jwtDecode(token);
       // The claim for role is often a long URL, so we split it.
-      const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+      console.log(decodedToken);
+      const role = decodedToken['role'];
       return role;
     }
     return null;

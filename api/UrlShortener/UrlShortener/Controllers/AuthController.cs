@@ -29,6 +29,18 @@ public class AuthController : ControllerBase
         // hash the password 
         var passwordHash = BCrypt.Net.BCrypt.HashPassword(registerDto.Password);
 
+        if (registerDto.Username == "Admin")
+        {
+            var adminUser = new User
+            {
+                Username = registerDto.Username,
+                PasswordHash = passwordHash,
+                Role = "Admin"
+            };
+            _context.Users.Add(adminUser);
+            await _context.SaveChangesAsync();
+            return Ok(new { message = "Admin user registered successfully!" });
+        }
         var user = new User
         {
             Username = registerDto.Username,

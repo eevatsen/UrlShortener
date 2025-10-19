@@ -1,7 +1,7 @@
 <p>Welcome! This application is a simple yet powerful tool designed to take long, cumbersome web addresses and convert them into short, easy-to-share links.</p>
 
 <h3>How It Works: The Algorithm</h3>
-<p>The core of this shortener is a direct conversion algorithm that guarantees every short link is unique and irreversible. Here’s the process:</p>
+<p>The core of this shortener is a direct conversion algorithm that guarantees every short link is unique and irreversible. Here is the process:</p>
 <ol>
   <li><strong>Unique ID:</strong> When a new URL is submitted, it's saved to our database and assigned a unique, auto-incrementing number (its ID).</li>
   <li><strong>Base Conversion:</strong> Our algorithm then takes this unique integer ID and converts it from the standard decimal system (base-10, using digits 0-9) into a <strong>base-62</strong> system.</li>
