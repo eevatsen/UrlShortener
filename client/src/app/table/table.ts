@@ -46,12 +46,12 @@ export class TableComponent implements OnInit {
     if (!this.newUrl.trim()) return;
     this.urlService.addUrl(this.newUrl).subscribe({
       next: () => {
-        this.toastr.success('URL shortened successfully!'); // ✅ Успіх
+        this.toastr.success('URL shortened successfully!'); 
         this.newUrl = '';
         this.loadUrls(); 
       },
       error: (err) => {
-        this.toastr.error(err.error, 'Error!'); // ❌ Помилка
+        this.toastr.error(err.error, 'Error!');
       }
     });
   }
@@ -60,14 +60,14 @@ export class TableComponent implements OnInit {
     if (confirm('Are you sure you want to delete this URL?')) {
       this.urlService.deleteUrl(id).subscribe({
         next: () => {
-          this.toastr.success('URL deleted successfully.'); // ✅ Успіх
+          this.toastr.success('URL deleted successfully.'); 
           this.loadUrls();
         },
         error: (err) => {
           if (err.status === 403) {
-            this.toastr.error('You do not have permission to delete this URL.'); // ❌ Помилка доступу
+            this.toastr.error('You do not have permission to delete this URL.'); 
           } else {
-            this.toastr.error('An error occurred while deleting the URL.'); // ❌ Інша помилка
+            this.toastr.error('An error occurred while deleting the URL.'); 
           }
         }
       });
@@ -80,10 +80,10 @@ export class TableComponent implements OnInit {
   }
   copyToClipboard(text: string): void {
     navigator.clipboard.writeText(text).then(() => {
-      // Show a success toast notification
+      // success toast notification
       this.toastr.success('Copied to clipboard!');
     }).catch(err => {
-      // Show an error toast if copying fails
+      // error toast if copying fails
       this.toastr.error('Failed to copy link.', 'Error');
       console.error('Could not copy text: ', err);
     });

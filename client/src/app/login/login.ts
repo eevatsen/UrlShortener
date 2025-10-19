@@ -29,12 +29,12 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response: any) => {
-          this.toastr.success('Logged in successfully!'); // ✅ Успіх
+          this.toastr.success('Logged in successfully!'); 
           localStorage.setItem('token', response.token);
           this.router.navigate(['/']);
         },
         error: (err) => {
-          this.toastr.error('Invalid username or password.', 'Login Failed!'); // ❌ Помилка
+          this.toastr.error('Invalid username or password.', 'Login Failed!'); 
         }
       });
     }

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router'; // Import RouterLink
+import { Router, RouterLink } from '@angular/router'; 
 import { AuthService } from '../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink // Add RouterLink to the imports array
+    RouterLink 
   ],
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css']
@@ -22,7 +22,7 @@ export class NavbarComponent {
 
   logout(): void {
     this.authService.logout();
-    this.toastr.info('You have been logged out.'); // ℹ️ Інформаційне повідомлення
+    this.toastr.info('You have been logged out.'); 
     this.router.navigate(['/login']);
   }
 }

@@ -28,11 +28,11 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe({
         next: (response) => {
-          this.toastr.success('Registration successful. Please log in.'); // ✅ Успіх
+          this.toastr.success('Registration successful. Please log in.'); 
           this.router.navigate(['/login']);
         },
         error: (err) => {
-          this.toastr.error(err.error, 'Registration Failed!'); // ❌ Помилка
+          this.toastr.error(err.error, 'Registration Failed!'); 
         }
       });
     }

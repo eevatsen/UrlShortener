@@ -30,8 +30,6 @@ export class AuthService {
     const token = localStorage.getItem('token');
     if (token) {
       const decodedToken: any = jwtDecode(token);
-      // The claim for role is often a long URL, so we split it.
-      console.log(decodedToken);
       const role = decodedToken['role'];
       return role;
     }
