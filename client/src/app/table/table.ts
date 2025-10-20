@@ -22,6 +22,7 @@ export class TableComponent implements OnInit {
   public urls: any[] = [];
   public newUrl: string = '';
   public apiUrl = environment.apiUrl;
+  public base_url = environment.url;
   public authService = inject(AuthService);
   private router = inject(Router);
 

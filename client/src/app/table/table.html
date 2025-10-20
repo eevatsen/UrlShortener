@@ -34,7 +34,7 @@
       </td>
       <td>
         <div class="d-flex justify-content-between align-items-center">
-          <a [href]="apiUrl + '/' + url.shortCode" target="_blank">{{ apiUrl + '/' + url.shortCode }}</a>
+          <a [href]="base_url + '/' + url.shortCode" target="_blank">{{ base_url + '/' + url.shortCode }}</a>
           <button (click)="copyToClipboard(apiUrl + '/' + url.shortCode)" class="btn btn-outline-secondary btn-sm ms-2">
             Copy
           </button>
